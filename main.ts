@@ -1,3 +1,7 @@
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
+    info.stopCountdown()
+    game.over(true)
+})
 info.onCountdownEnd(function () {
     game.showLongText("You ran out of time!", DialogLayout.Center)
     game.over(false)
@@ -22,5 +26,7 @@ let mySprite = sprites.create(img`
     . . . f f . . f f . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
-game.showLongText("I need to find my way to the blue smiley face.", DialogLayout.Full)
+tiles.placeOnTile(mySprite, tiles.getTileLocation(1, 1))
+scene.cameraFollowSprite(mySprite)
+game.showLongText("I need to find my way to the blue tile with the smiley face.", DialogLayout.Full)
 info.startCountdown(120)
